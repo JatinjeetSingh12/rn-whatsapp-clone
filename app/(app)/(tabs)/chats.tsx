@@ -16,15 +16,21 @@ const Page = () => {
 
       <ChatHeader />
 
-      <Box>
+      <Box mt={5}>
         <FlatList
           data={chatsList}
           ListFooterComponent={() => (
             <Box>
               <Divider bg={"$secondary600"} />
               <Box h={200}>
-                <Box gap={2} mt={8} flexDirection="row" justifyContent="center" alignItems="center">
-                <AntDesign name="lock" size={12} color="#B0B0B0" />
+                <Box
+                  gap={2}
+                  mt={8}
+                  flexDirection="row"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <AntDesign name="lock" size={12} color="#B0B0B0" />
                   <RNText
                     fontSize={"$xs"}
                     textAlign="center"
@@ -44,7 +50,7 @@ const Page = () => {
           )}
           renderItem={({ item }) => (
             <Box m={10} flexDirection="row">
-              <HStack gap={10} alignItems="center" flex={1}>
+              <HStack  gap={10} alignItems="center" flex={1}>
                 <Box w={50} h={50}>
                   <FastImage
                     style={{
@@ -55,9 +61,14 @@ const Page = () => {
                     source={{ uri: item.userProfileImg }}
                   />
                 </Box>
-                <Box>
-                  <Text bold>{item.userName}</Text>
-                  <RNText fontSize={'$sm'} color={"$secondary300"}>{item.latestMessage}</RNText>
+                <Box flex={1} >
+                  <HStack flex={1} justifyContent="space-between">
+                    <Text bold>{item.userName}</Text>
+                    <Text fontSize={"$xs"}>{item.time}</Text>
+                  </HStack>
+                  <RNText fontSize={"$sm"}   numberOfLines={1} color={"$secondary300"}>
+                    {item.latestMessage }
+                  </RNText>
                 </Box>
               </HStack>
             </Box>
