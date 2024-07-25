@@ -1,12 +1,11 @@
+import { updatesList } from "@/components/data/data";
 import { View, Text } from "@/components/Themed";
 import UpdatesHeader from "@/components/updates/UpdatesHeader";
 import Colors from "@/constants/Colors";
 import { AntDesign } from "@expo/vector-icons";
 import { Box, HStack, VStack, Text as RNText } from "@gluestack-ui/themed";
 import React from "react";
-import { StatusBar, useColorScheme } from "react-native";
-import FastImage from "react-native-fast-image";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { FlatList, StatusBar, useColorScheme ,Image} from "react-native";
 
 const Page = () => {
   const colorScheme = useColorScheme();
@@ -23,7 +22,7 @@ const Page = () => {
 
         <HStack gap={10} >
           <Box  position="relative">
-            <FastImage
+            <Image
               source={{
                 uri: "https://qph.cf2.quoracdn.net/main-qimg-190bef3af6e815401e25f6a97c33df8b-lq",
               }}
@@ -54,6 +53,27 @@ const Page = () => {
             </RNText>
           </VStack>
         </HStack>
+
+        <RNText color="$secondary300" mt={10}>View updates</RNText>
+        <Box>
+          <FlatList 
+          keyExtractor={(_,index)=>index.toString()}
+          data={updatesList}
+          renderItem={({item})=>(
+            <HStack my={10} gap={10}>
+              <Image
+              source={{uri:item.userProfileImg}}
+              style={{width:50,height:50,borderRadius:100}}
+              
+              />
+              <VStack gap={2} mt={5}>
+                <Text fontSize={'$lg'} bold>{item.userName}</Text>
+                <RNText fontSize={'$sm'} color="$secondary300">32 minutes ago</RNText>
+              </VStack>
+            </HStack>
+          )}
+          />
+        </Box>
       </Box>
     </View>
   );

@@ -97,3 +97,54 @@ export const chatsList = [
     latestMessage: "See you soon.",
   },
 ];
+
+
+
+export const updatesList = [
+  {
+    id: 1,
+    userProfileImg:
+      "https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg",
+    userName: "Bob",
+  },
+  {
+    id: 2,
+    userProfileImg:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqGK3diR3Zi-mnOXEaj-3ewmFyRYVxGzVzZw&s",
+    userName: "Alice",
+  },
+  {
+    id: 3,
+    userProfileImg:
+      "https://imgv3.fotor.com/images/slider-image/A-clear-close-up-photo-of-a-woman.jpg",
+    userName: "Charlie",
+  }
+];
+
+
+export const callsList = [
+  {
+    id: 1,
+    userProfileImg:
+      "https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg",
+    userName: "Bob",
+    time: "15 minutes ago",
+    callPicked:true
+  },
+  {
+    id: 2,
+    userProfileImg:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqGK3diR3Zi-mnOXEaj-3ewmFyRYVxGzVzZw&s",
+    userName: "Alice",
+    time: "2 hours ago",
+    callPicked:false
+  },
+  {
+    id: 3,
+    userProfileImg:
+    "https://imgv3.fotor.com/images/slider-image/A-clear-close-up-photo-of-a-woman.jpg",
+    userName: "Charlie",
+    time: "1 day ago",
+    callPicked:false
+  }
+]

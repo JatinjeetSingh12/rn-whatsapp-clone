@@ -1,4 +1,4 @@
-package com.jatin.whatsapp
+package com.talkhub
 
 import android.app.Application
 import android.content.res.Configuration

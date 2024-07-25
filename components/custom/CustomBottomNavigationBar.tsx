@@ -1,10 +1,11 @@
 import { View, Text } from "@/components/Themed";
 import Colors from "@/constants/Colors";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AntDesign, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
 import { Center, HStack, Pressable } from "@gluestack-ui/themed";
 import { Link } from "expo-router";
 import React, { FC } from "react";
 import { useColorScheme } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 type Props = {
   state: any;
@@ -12,24 +13,34 @@ type Props = {
 
 const data = [
   {
-    text: "Chats",
-    iconName: "android-messages",
-    screenName: "chats",
-  },
-  {
     text: "Updates",
     iconName: "update",
     screenName: "updates",
+    center: false
   },
   {
-    text: "Communities",
-    iconName: "account-group-outline",
-    screenName: "communities",
+    text: "Chats",
+    iconName: "android-messages",
+    screenName: "chats",
+    center: false
   },
   {
     text: "Calls",
     iconName: "phone-outline",
     screenName: "calls",
+    center: true
+  },
+  {
+    text: "Calls",
+    iconName: "phone-outline",
+    screenName: "calls",
+    center: false
+  },
+  {
+    text: "settings",
+    iconName: "phone-outline",
+    screenName: "calls",
+    center: false
   },
 ];
 
@@ -41,48 +52,58 @@ const CustomBottomNavigationBar: FC<Props> = ({ state }) => {
     text: string;
     index: number;
     iconName: any;
+    center:boolean
     screenName: string;
-  }> = ({ text, index, iconName, screenName }) => {
+  }> = ({ text, index, iconName, screenName,center }) => {
     const isSelected = state.index === index;
 
     return (
-      <Link href={`/${screenName}`} asChild key={index}>
+      <Link style={{position:'relative'}} href={`/${screenName}`} asChild key={index}>
+        {center?
+        
         <Pressable
-          gap={isSelected ? 5 : 3}
-          justifyContent="center"
-          alignItems="center"
+        position="absolute"
+        justifyContent="center"
+        alignItems="center"
+        rounded={'$full'}
+        w={60}
+        h={60}
+        bottom={30}
+        bg={'$red500'}
+        shadowColor="$black"
+        shadowOffset={{width:0,height:10}}
+        shadowOpacity={0.25}
+        shadowRadius={10}
         >
-          <Center
-            w={65}
-            h={35}
-            justifyContent="center"
-            alignItems="center"
-            rounded="$full"
-            bg={isSelected ? currentTheme.tabIconSelected : "transparent"}
-            elevation={isSelected ? 2 : 0}
-          >
-            <MaterialCommunityIcons
-              name={iconName}
-              size={24}
-              color={currentTheme.text}
-            />
-          </Center>
-          <Text
-            textAlign="center"
-            fontSize="$sm"
-            color={isSelected ? currentTheme.tabIconSelected : currentTheme.text}
-            fontWeight={isSelected ? "bold" : "normal"}
-          >
-            {text}
-          </Text>
+
+          <AntDesign name="plus" size={24} color="white" />
         </Pressable>
+        :
+        <Pressable
+        justifyContent="center"
+        alignItems="center"
+        >
+          {text === 'settings' ?
+            <SimpleLineIcons name="settings" size={18} color="black" /> :
+            <MaterialCommunityIcons
+            name={iconName}
+            size={24}
+            color={isSelected?'red':'grey'}
+            />
+          }
+        </Pressable>
+          }
       </Link>
     );
   };
 
   return (
-    <View>
-      <HStack py={5} w="$full" justifyContent="space-around">
+    <SafeAreaView edges={['bottom']} style={{
+      backgroundColor: 'white'
+      // backgroundColor:'red'
+    }}
+    >
+      <HStack position="relative" bg="white" mt={5} w="$full" justifyContent="space-around">
         {data.map((item, index) => (
           <TabIcon
             key={index}
@@ -90,10 +111,11 @@ const CustomBottomNavigationBar: FC<Props> = ({ state }) => {
             index={index}
             text={item.text}
             screenName={item.screenName}
+            center={item.center}
           />
         ))}
       </HStack>
-    </View>
+    </SafeAreaView>
   );
 };
 

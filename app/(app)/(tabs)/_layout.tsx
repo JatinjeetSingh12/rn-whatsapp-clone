@@ -11,7 +11,6 @@ import { Feather, MaterialIcons, SimpleLineIcons } from "@expo/vector-icons";
 const authLayout = () => {
   const colorScheme = useColorScheme();
 
-  const { top } = useSafeAreaInsets();
 
   return (
     <Tabs
@@ -19,12 +18,13 @@ const authLayout = () => {
       tabBar={(props) => <CustomBottomNavigationBar {...props} />}
       screenOptions={{ headerShown: false }}
     >
+      <Tabs.Screen name="updates" />
       <Stack.Screen
         name="chats"
       />
-      <Tabs.Screen name="updates" />
-      <Tabs.Screen name="communities" />
+      <Tabs.Screen name="add" />
       <Tabs.Screen name="calls" />
+      <Tabs.Screen name="setting" />
     </Tabs>
   );
 };
