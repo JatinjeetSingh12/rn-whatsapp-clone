@@ -1,4 +1,4 @@
-import { useColorScheme } from "react-native";
+import { useColorScheme,Image } from "react-native";
 import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
@@ -6,6 +6,7 @@ import {
   Input,
   InputSlot,
   InputField,
+  Box,
 } from "@gluestack-ui/themed";
 import {
   AntDesign,
@@ -23,34 +24,25 @@ const ChatHeader = () => {
   const colorScheme = useColorScheme();
 
   return (
-    <View px={10} pt={top + 8}>
-      <HStack justifyContent="space-between">
+    <View pt={top + 8}>
+      <HStack w={'90%'} alignSelf="center" alignItems="center" justifyContent="space-between">
         <Text fontSize={"$2xl"} bold>
-          WhatsApp
+          Talk Hub
         </Text>
-        <HStack alignItems="center" gap={23}>
-          <MaterialIcons
-            name="qr-code-scanner"
-            size={24}
-            color={Colors[colorScheme ?? "light"].text}
-          />
-          <Feather
-            name="camera"
-            size={24}
-            color={Colors[colorScheme ?? "light"].text}
-          />
-          <SimpleLineIcons
-            name="options-vertical"
-            size={22}
-            color={Colors[colorScheme ?? "light"].text}
-          />
-        </HStack>
+            <Image 
+            source={{uri:'https://cdn.pixabay.com/photo/2024/06/24/04/05/woman-8849047_1280.jpg'}}
+            style={{width:35,height:35,borderRadius:100}}
+            resizeMode="cover"
+
+            />
       </HStack>
-      <Input
+      <Input 
+      alignSelf="center"
+      w={'90%'}
         mt={18}
         borderWidth={0}
-        bg={Colors[colorScheme ?? "light"].searchBar}
-        rounded={"$full"}
+        bg={'$white'}
+        rounded={"$xl"}
       >
         <InputSlot>
           <AntDesign

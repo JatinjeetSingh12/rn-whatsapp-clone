@@ -7,7 +7,7 @@ const authLayout = () => {
 
 
   if(session){
-    return <Redirect href={'/(app)/(tabs)/chats'} />
+    return <Redirect href={'/(app)/(tabs)/chatsList'} />
   }
   return (
     <Stack screenOptions={{ headerShown: false }}>

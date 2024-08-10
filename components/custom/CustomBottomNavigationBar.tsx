@@ -1,7 +1,6 @@
-import { View, Text } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import { AntDesign, MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
-import { Center, HStack, Pressable } from "@gluestack-ui/themed";
+import { HStack, Pressable } from "@gluestack-ui/themed";
 import { Link } from "expo-router";
 import React, { FC } from "react";
 import { useColorScheme } from "react-native";
@@ -21,13 +20,13 @@ const data = [
   {
     text: "Chats",
     iconName: "android-messages",
-    screenName: "chats",
+    screenName: "chatsList",
     center: false
   },
   {
-    text: "Calls",
+    text: "add",
     iconName: "phone-outline",
-    screenName: "calls",
+    screenName: "add",
     center: true
   },
   {
@@ -39,7 +38,7 @@ const data = [
   {
     text: "settings",
     iconName: "phone-outline",
-    screenName: "calls",
+    screenName: "settings",
     center: false
   },
 ];
@@ -52,58 +51,61 @@ const CustomBottomNavigationBar: FC<Props> = ({ state }) => {
     text: string;
     index: number;
     iconName: any;
-    center:boolean
+    center: boolean
     screenName: string;
-  }> = ({ text, index, iconName, screenName,center }) => {
+  }> = ({ text, index, iconName, screenName, center }) => {
+
     const isSelected = state.index === index;
 
     return (
-      <Link style={{position:'relative'}} href={`/${screenName}`} asChild key={index}>
-        {center?
-        
-        <Pressable
-        position="absolute"
-        justifyContent="center"
-        alignItems="center"
-        rounded={'$full'}
-        w={60}
-        h={60}
-        bottom={30}
-        bg={'$red500'}
-        shadowColor="$black"
-        shadowOffset={{width:0,height:10}}
-        shadowOpacity={0.25}
-        shadowRadius={10}
-        >
+      <Link style={{ position: 'relative' }} href={`/${screenName}`} asChild key={index}>
+        {center ?
 
-          <AntDesign name="plus" size={24} color="white" />
-        </Pressable>
-        :
-        <Pressable
-        justifyContent="center"
-        alignItems="center"
-        >
-          {text === 'settings' ?
-            <SimpleLineIcons name="settings" size={18} color="black" /> :
-            <MaterialCommunityIcons
-            name={iconName}
-            size={24}
-            color={isSelected?'red':'grey'}
-            />
-          }
-        </Pressable>
-          }
+          <Pressable
+            position="absolute"
+            justifyContent="center"
+            alignItems="center"
+            rounded={'$full'}
+            w={60}
+            h={60}
+            bottom={30}
+            bg={'$red500'}
+            shadowColor="$black"
+            shadowOffset={{ width: 0, height: 10 }}
+            shadowOpacity={0.25}
+            shadowRadius={10}
+          >
+
+            <AntDesign name="plus" size={24} color="white" />
+          </Pressable>
+          :
+          <Pressable
+            justifyContent="center"
+            alignItems="center"
+          >
+            {text === 'settings' ?
+              <SimpleLineIcons
+                name="settings"
+                size={18}
+                color={isSelected ? 'red' : 'grey'} />
+              :
+              <MaterialCommunityIcons
+                name={iconName}
+                size={24}
+                color={isSelected ? 'red' : 'grey'}
+              />
+            }
+          </Pressable>
+        }
       </Link>
     );
   };
 
   return (
-    <SafeAreaView edges={['bottom']} style={{
-      backgroundColor: 'white'
-      // backgroundColor:'red'
-    }}
+    <SafeAreaView edges={['bottom']}
+      style={{ backgroundColor: 'white',borderWidth:0.1,borderColor:'silver' }}
     >
-      <HStack position="relative" bg="white" mt={5} w="$full" justifyContent="space-around">
+      <HStack position="relative" mt={5} w="$full" justifyContent="space-around">
         {data.map((item, index) => (
           <TabIcon
             key={index}

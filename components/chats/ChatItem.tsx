@@ -1,5 +1,6 @@
 import { View, Text } from "@/components/Themed";
-import { Box, Divider, HStack, Text as RNText } from "@gluestack-ui/themed";
+import { Box, Divider, HStack, Pressable, Text as RNText } from "@gluestack-ui/themed";
+import { router } from "expo-router";
 import React, { FC } from 'react'
 import { Image } from "react-native";
 
@@ -13,7 +14,7 @@ type Props = {
 
 const ChatItem: FC<Props> = ({ image, latestMessage, name, time }) => {
   return (
-    <Box m={10} flexDirection="row">
+    <Pressable onPress={()=>router.push('chatScreen')}  rounded={'$xl'} w={'90%'} p={10} alignSelf="center" my={10} bg="$white" flexDirection="row">
       <HStack gap={10} alignItems="center" flex={1}>
         <Box w={50} h={50}>
           <Image
@@ -35,7 +36,7 @@ const ChatItem: FC<Props> = ({ image, latestMessage, name, time }) => {
           </RNText>
         </Box>
       </HStack>
-    </Box>
+    </Pressable>
   )
 }
 
