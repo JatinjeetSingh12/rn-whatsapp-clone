@@ -6,8 +6,6 @@ import CustomBottomNavigationBar from "@/components/custom/CustomBottomNavigatio
 
 const authLayout = () => {
 
-
-
   return (
     <Tabs
       initialRouteName="chatsList"

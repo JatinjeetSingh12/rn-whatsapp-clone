@@ -6,6 +6,7 @@ import React from "react";
 import { useColorScheme, Image } from "react-native";
 
 const Page = () => {
+  
   const colorScheme = useColorScheme();
 
   return (
